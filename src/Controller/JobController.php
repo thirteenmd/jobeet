@@ -8,13 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("job")
- */
 class JobController extends AbstractController
 {
     /**
-     * @Route("/", name="job.list")
+     * @Route("/", name="job.list", methods="GET")
      *
      * @return Response
      */
@@ -22,13 +19,13 @@ class JobController extends AbstractController
     {
         $jobs = $this->getDoctrine()->getRepository(Job::class)->findAll();
 
-        return $this->render('job/list/html.twig', [
+        return $this->render('job/list.html.twig', [
             'jobs' => $jobs,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="job.show")
+     * @Route("job/{id}", name="job.show",  methods="GET", requirements={"id" = "\d+"})
      *
      * @param Job $job
      *
