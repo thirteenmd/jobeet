@@ -27,6 +27,11 @@ class CategoryFixtures extends Fixture
         $administratorCategory = new Category();
         $administratorCategory->setName('Administrator');
 
+        $manager->persist($designCategory);
+        $manager->persist($programmingCategory);
+        $manager->persist($managerCategory);
+        $manager->persist($administratorCategory);
+
         $manager->flush();
 
         $this->addReference('category-design', $designCategory);
